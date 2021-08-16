@@ -1,5 +1,5 @@
 // import config from 'config';
-import { UserApi, handleResponse} from '../_api'
+import { UserApi, handleResponse} from '../_apis'
 
 export const userService = {
     login,
