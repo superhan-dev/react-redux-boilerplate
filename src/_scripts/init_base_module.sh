@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for FOLDER in "_actions" "_api" "_constants" "_services" "_helpers" "_reducers" "_styles";
+for FOLDER in "_actions" "_api" "_constants" "_services" "_helpers" "_reducers" "_styles" "_components";
 do
         cd ..
 
