@@ -4,19 +4,19 @@ import PropTypes from "prop-types";
 
 function PrivateRoute({ component: Component, roles, ...rest }) {
   return (
-    <Route
-      {...rest}
-      render={(props) =>
-        !localStorage.getItem("user") ? (
-          <Redirect
-            to={{ pathname: "/login", state: { from: props.location } }}
-          />
-        ) : (
-          <Component {...props} />
-        )
-      }
-    />
-    // <Component {...rest} />
+    // <Route
+    //   {...rest}
+    //   render={(props) =>
+    //     !localStorage.getItem("user") ? (
+    //       <Redirect
+    //         to={{ pathname: "/login", state: { from: props.location } }}
+    //       />
+    //     ) : (
+    //       <Component {...props} />
+    //     )
+    //   }
+    // />
+    <Component {...rest} />
   );
 }
 

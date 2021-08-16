@@ -1,9 +1,8 @@
-import React from 'react';
+import React from "react";
+import { AppLayout } from "../../_components";
 
 function DashboardPage() {
-  return <div>DashboardPage has been created by gen_script</div>;
+  return <AppLayout>Dashboard</AppLayout>;
 }
 
 export { DashboardPage };
-
-
