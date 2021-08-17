@@ -5,7 +5,7 @@ DIR_PATH="../Pages"
 PAGE_NAME=$1
 FILE_NAME="$PAGE_NAME.jsx"
 
-EXPORT="export * from './$PAGE_NAME'"
+EXPORT="export * from './$PAGE_NAME';"
 
 cd "$DIR_PATH"
 

@@ -6,7 +6,7 @@ import { history } from "../_helpers";
 import { PrivateRoute } from "../_components";
 import { alertActions, userActions } from "../_actions";
 
-import { DashboardPage, LoginPage } from "../Pages";
+import { DashboardPage, ImageUploadPage, LoginPage } from "../Pages";
 
 import { ThemeProvider } from "@material-ui/core";
 import { customTheme } from "./customTheme";
@@ -103,6 +103,11 @@ function App() {
         <Router history={history}>
           <Switch>
             <PrivateRoute exact path="/" component={DashboardPage} />
+            <PrivateRoute
+              exact
+              path="/image_upload"
+              component={ImageUploadPage}
+            />
 
             <Route path="/login" component={LoginPage} />
             <Redirect from="*" to="/" />
