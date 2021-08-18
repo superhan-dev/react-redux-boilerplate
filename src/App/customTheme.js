@@ -18,11 +18,11 @@ import { createTheme } from '@material-ui/core/styles'
 //   main:'#f36666'
 // }
 
-// const text = {
-//   primary:"#4b4d54",
-//   secondary:"#cbd0d3",
-//   light:'#f8f7f2'
-// }
+const text = {
+  primary:"#4b4d54",
+  secondary:"#cbd0d3",
+  light:'#f8f7f2'
+}
 
 export let customTheme = createTheme({
   palette:{
@@ -30,7 +30,7 @@ export let customTheme = createTheme({
     // secondary: secondary,
     // error: error,
     // success: primary,
-    // text:text
+    text:text
   },
   overrides:{
     // MuiButton:{

@@ -5,15 +5,13 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 
 import { AppDrawer } from "./AppDrawer";
 import { AppHeader } from "./AppHeader";
+import AppFooter from "./AppFooter";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    flexDirection: "column",
-    height: "100%",
-    margin: "0px",
+    height: "90vh",
   },
 
   toolbar: {
@@ -30,17 +28,15 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     flexGrow: 1,
-    paddingTop: theme.spacing(1),
-    paddingLeft: theme.spacing(3),
-    marginLeft: drawerWidth,
+    paddingLeft: theme.spacing(2),
+    marginLeft: drawerWidth - 16,
   },
   contentWide: {
     transition: theme.transitions.create("margin-left", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    paddingTop: theme.spacing(1),
-    paddingLeft: theme.spacing(3),
+    paddingLeft: theme.spacing(1),
     marginLeft: theme.spacing(7) + 1,
   },
 }));
@@ -80,6 +76,7 @@ function AppLayout({ children, styleprops, ...props }) {
         <div className={classes.toolbar} />
         {children}
       </main>
+      <AppFooter />
     </div>
   );
 }

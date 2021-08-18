@@ -55,8 +55,29 @@ const useStyles = makeStyles((theme) => ({
   },
 
   drawerList: {
+    padding: "0",
+    display: "flex",
+    justifyContent: "center",
     "& .MuiListItem-root": {
-      marginLeft: 8,
+      justifyContent: "center",
+    },
+    "& a": {
+      textDecoration: "none",
+      color: theme.palette.text.primary,
+    },
+    "& .MuiListItemIcon-root": {
+      minWidth: "0",
+      marginRight: "1rem",
+    },
+  },
+  drawerListOpen: {
+    "& .MuiListItemIcon-root": {
+      marginRight: "1rem",
+    },
+  },
+  drawerListClose: {
+    "& .MuiListItemIcon-root": {
+      marginRight: "0",
     },
   },
 }));
@@ -88,17 +109,29 @@ function AppDrawer({ open, handleDrawerClose, menus }) {
         </IconButton>
       </div>
       <Divider />
-      <List className={classes.drawerList}>
+      <List
+        className={clsx(classes.drawerList, {
+          [classes.drawerListOpen]: open,
+          [classes.drawerListClose]: !open,
+        })}
+      >
         {menus.map((menu, index) => (
-          <Link to={menu.path} key={menu.title}>
-            <ListItem button>
-              <ListItemIcon>
-                {menu.icon === "CloudUpload" && <CloudUploadIcon />}
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              </ListItemIcon>
-              <ListItemText primary={menu.title} />
-            </ListItem>
-          </Link>
+          <ListItem button>
+            <ListItemIcon>
+              {menu.icon === "CloudUpload" && (
+                <Link to={menu.path} key={menu.title}>
+                  <CloudUploadIcon />
+                </Link>
+              )}
+              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+            </ListItemIcon>
+
+            {open && (
+              <Link to={menu.path} key={menu.title}>
+                <ListItemText primary={menu.title} />
+              </Link>
+            )}
+          </ListItem>
         ))}
       </List>
 
