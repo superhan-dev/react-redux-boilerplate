@@ -14,10 +14,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function FileUploadInput({}) {
+function FileUploadInput({ handleUpload }) {
   const classes = useStyles();
 
-  function handleChange() {}
+  function handleChange(event) {
+    console.log(event.target.files);
+    handleUpload(event.target.files);
+  }
 
   return (
     <div className={classes.root}>
@@ -27,7 +30,7 @@ function FileUploadInput({}) {
         id="icon-button-file"
         multiple
         type="file"
-        // onChange={}
+        onChange={handleChange}
       />
       <label htmlFor="icon-button-file">
         <IconButton
