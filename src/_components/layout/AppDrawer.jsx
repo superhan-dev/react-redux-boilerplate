@@ -13,9 +13,6 @@ import {
 } from "@material-ui/core";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import { TitleSharp } from "@material-ui/icons";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -57,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
   drawerList: {
     padding: "0",
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
     "& .MuiListItem-root": {
       justifyContent: "center",
@@ -116,14 +114,11 @@ function AppDrawer({ open, handleDrawerClose, menus }) {
         })}
       >
         {menus.map((menu, index) => (
-          <ListItem button>
+          <ListItem key={"ListItem" + index} button>
             <ListItemIcon>
-              {menu.icon === "CloudUpload" && (
-                <Link to={menu.path} key={menu.title}>
-                  <CloudUploadIcon />
-                </Link>
-              )}
-              {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+              <Link to={menu.path} key={menu.title}>
+                {menu.icon}
+              </Link>
             </ListItemIcon>
 
             {open && (

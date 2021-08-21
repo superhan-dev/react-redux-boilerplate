@@ -7,6 +7,8 @@ import { AppDrawer } from "./AppDrawer";
 import { AppHeader } from "./AppHeader";
 import AppFooter from "./AppFooter";
 
+import { menus } from "../../App/data";
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -36,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    paddingLeft: theme.spacing(1),
-    marginLeft: theme.spacing(7) + 1,
+    paddingLeft: theme.spacing(2),
+    marginLeft: theme.spacing(7) + 3,
   },
 }));
 
@@ -82,20 +84,3 @@ function AppLayout({ children, styleprops, ...props }) {
 }
 
 export { AppLayout };
-
-const menus = [
-  {
-    title: "ImageUploadPage",
-    path: "/image_upload",
-    imgUrl: "",
-    icon: "CloudUpload",
-    color: "#000",
-    subMenus: [
-      {
-        title: "",
-        path: "",
-        imgUrl: "",
-      },
-    ],
-  },
-];

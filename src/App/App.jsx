@@ -6,7 +6,12 @@ import { history } from "../_helpers";
 import { PrivateRoute } from "../_components";
 import { alertActions, userActions } from "../_actions";
 
-import { DashboardPage, ImageUploadPage, LoginPage } from "../Pages";
+import {
+  CanvasPage,
+  DashboardPage,
+  ImageUploadPage,
+  LoginPage,
+} from "../Pages";
 
 import { ThemeProvider } from "@material-ui/core";
 import { customTheme } from "./customTheme";
@@ -108,6 +113,7 @@ function App() {
               path="/image_upload"
               component={ImageUploadPage}
             />
+            <PrivateRoute exact path="/canvas" component={CanvasPage} />
 
             <Route path="/login" component={LoginPage} />
             <Redirect from="*" to="/" />
