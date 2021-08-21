@@ -127,7 +127,7 @@ function AppDrawer({ open, handleDrawerClose, menus }) {
         {menus.map((menu, index) => (
           <>
             <ListItem key={"ListItem" + index} button>
-              <ListItemIcon style={{ marginLeft: `${!open ? ".5rem" : "0"}` }}>
+              <ListItemIcon style={{ marginLeft: `${!open ? ".2rem" : "0"}` }}>
                 <Link to={menu.path} key={menu.title}>
                   {menu.icon}
                 </Link>

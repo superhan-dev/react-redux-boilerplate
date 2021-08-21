@@ -1,9 +1,19 @@
 import React, { useRef, useEffect, useState } from "react";
 
 import { select } from "d3";
-import { Button } from "@material-ui/core";
+import { Button, makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    margin: "1rem",
+  },
+  svg: {
+    overflow: "visible",
+  },
+}));
 
 function D3CirclePage() {
+  const classes = useStyles();
   const [data, setData] = useState([25, 30, 45, 60, 20]);
   const svgRef = useRef(null);
 
@@ -26,8 +36,10 @@ function D3CirclePage() {
   }, [data]);
 
   return (
-    <div>
+    <div className={classes.root}>
+      <h1>The Circles </h1>
       <svg ref={svgRef}></svg>
+      <br></br>
       <br></br>
       <Button
         onClick={() => setData(data.map((value) => value + 5))}

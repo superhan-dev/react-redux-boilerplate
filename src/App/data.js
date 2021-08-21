@@ -1,7 +1,9 @@
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
-import CropOriginalIcon from '@material-ui/icons/CropOriginal';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import WallpaperIcon from '@material-ui/icons/Wallpaper';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
+import PaletteIcon from '@material-ui/icons/Palette';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 /**
  * data.js는 app전체에서 공통적으로 사용되는 static data를 정의한 공간이다.
@@ -13,7 +15,7 @@ import ShowChartIcon from '@material-ui/icons/ShowChart';
 // python으로 정의하는게 보다 편할듯 보인다.
 export const menus = [
   {
-    title: "ImageUploadPage",
+    title: "ImageUpload",
     path: "/image_upload",
     imgUrl: "",
     icon: (<CloudUploadIcon/>),
@@ -21,18 +23,18 @@ export const menus = [
     subMenus: [],
   },
   {
-    title: "CanvasPage",
+    title: "Canvas Practice",
     path: "/canvas",
     imgUrl: "",
-    icon: (<CropOriginalIcon/>),
+    icon: (<WallpaperIcon/>),
     color: "#000",
     subMenus: [],
   },
   {
-    title: "D3PracticePage",
+    title: "D3 Practice",
     path: "/d3_practice",
     imgUrl: "",
-    icon: (<CropOriginalIcon/>),
+    icon: (<PaletteIcon/>),
     color: "#000",
     subMenus: [
       {
@@ -45,6 +47,12 @@ export const menus = [
         title: "Line Chart",
         path: "/d3_practice/line_chart",
         icon: (<ShowChartIcon/>),
+        imgUrl: "",
+      },
+      {
+        title: "Animated Bar",
+        path: "/d3_practice/animated_bar",
+        icon: (<EqualizerIcon/>),
         imgUrl: "",
       },
     ],
