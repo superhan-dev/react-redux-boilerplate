@@ -4,7 +4,12 @@ import { AppLayout } from "../../_components";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.text.light,
+    display: "flex",
+    justifyContent: "center",
+    backgroundColor: theme.palette.text.secondary,
+  },
+  canvas: {
+    backgroundColor: "#fff",
   },
 }));
 
@@ -17,6 +22,7 @@ function CanvasPage() {
   const [ctx, setCtx] = useState(null);
 
   const [isDrawing, setIsDrawing] = useState(false);
+  const [coordinates, setCoordinates] = useState([]);
 
   useEffect(() => {
     initCanvas();
@@ -26,42 +32,63 @@ function CanvasPage() {
     console.log("isdrawing", isDrawing);
   }, [isDrawing]);
 
+  useEffect(() => {
+    console.log(coordinates);
+  }, [coordinates]);
+
   function initCanvas() {
     const canvas = canvasRef.current;
-    canvas.width = window.innerWidth * 0.5;
-    canvas.height = window.innerHeight;
+    canvas.width = 500;
+    canvas.height = 500;
+    // canvas.width = window.innerWidth * 0.5;
+    // canvas.height = window.innerHeight;
 
     const context = canvas.getContext("2d");
     setCtx(context);
   }
 
-  function startDrawing() {
-    setIsDrawing(true);
-  }
-  function finishDrawing() {
-    setIsDrawing(false);
-  }
-  function drawing(event) {
-    let x = event.offsetX;
-    let y = event.offsetY;
+  const drawLine = (style = {}) => {
+    const { color = "black", width = 1 } = style;
+    if (ctx) {
+      ctx.beginPath();
+      ctx.moveTo(coordinates[0].x, coordinates[0].y);
 
-    if (isDrawing) {
-      console.log(event);
+      // 나머지 값으로 라인을 그린다.
+      coordinates.forEach((coordinate) => {
+        ctx.lineTo(coordinate.x, coordinate.y);
+      });
+      ctx.strokeStyle = color;
+      ctx.lineWidth = width;
+      ctx.stroke();
     }
+  };
+
+  function startDrawing(event) {
+    let nativeEvent = event.nativeEvent;
+
+    const { offsetX, offsetY } = nativeEvent;
+    let x = offsetX;
+    let y = offsetY;
+    console.log("drawing", x, y);
+
+    setCoordinates((oldValue) => [...oldValue, { x, y }]);
   }
   function finishDrawing() {
-    setIsDrawing(false);
+    ctx.fill();
   }
 
   return (
     <AppLayout>
       <div className={classes.root}>
         <canvas
+          className={classes.canvas}
           ref={canvasRef}
+          // onClick={startDrawing}
           onMouseDown={startDrawing}
-          onMouseUp={finishDrawing}
-          onMouseMove={drawing}
-          onMouseLeave={finishDrawing}
+          onMouseUp={drawLine}
+          onDoubleClick={finishDrawing}
+          // onMouseMove={drawing}
+          // onMouseLeave={finishDrawing}
         />
       </div>
     </AppLayout>

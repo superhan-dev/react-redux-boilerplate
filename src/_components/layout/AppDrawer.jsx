@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import {
+  Collapse,
   Divider,
   Drawer,
   IconButton,
@@ -14,6 +15,8 @@ import {
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import { Link } from "react-router-dom";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
 
 const drawerWidth = 240;
 
@@ -56,9 +59,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    "& .MuiListItem-root": {
-      justifyContent: "center",
-    },
     "& a": {
       textDecoration: "none",
       color: theme.palette.text.primary,
@@ -78,11 +78,22 @@ const useStyles = makeStyles((theme) => ({
       marginRight: "0",
     },
   },
+  nested: {
+    paddingLeft: theme.spacing(4),
+  },
 }));
 
 function AppDrawer({ open, handleDrawerClose, menus }) {
   const theme = useTheme();
   const classes = useStyles();
+
+  const [expend, setExpend] = useState(false);
+
+  function handleExpentClick(event) {
+    event.stopPropagation();
+    setExpend(!expend);
+  }
+
   return (
     <Drawer
       variant="permanent"
@@ -114,19 +125,53 @@ function AppDrawer({ open, handleDrawerClose, menus }) {
         })}
       >
         {menus.map((menu, index) => (
-          <ListItem key={"ListItem" + index} button>
-            <ListItemIcon>
-              <Link to={menu.path} key={menu.title}>
-                {menu.icon}
-              </Link>
-            </ListItemIcon>
+          <>
+            <ListItem key={"ListItem" + index} button>
+              <ListItemIcon style={{ marginLeft: `${!open ? ".5rem" : "0"}` }}>
+                <Link to={menu.path} key={menu.title}>
+                  {menu.icon}
+                </Link>
+              </ListItemIcon>
 
-            {open && (
-              <Link to={menu.path} key={menu.title}>
-                <ListItemText primary={menu.title} />
-              </Link>
+              {open && (
+                <>
+                  <Link to={menu.path} key={menu.title}>
+                    <ListItemText primary={menu.title} />
+                  </Link>
+                  {menu.subMenus.length > 0 && (
+                    <IconButton size="small" onClick={handleExpentClick}>
+                      {expend ? <ExpandLess /> : <ExpandMore />}
+                    </IconButton>
+                  )}
+                </>
+              )}
+            </ListItem>
+            {menu.subMenus.length > 0 && (
+              <Collapse in={expend} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  {menu.subMenus.map((subMenu, i) => {
+                    console.log(subMenu);
+                    return (
+                      <ListItem
+                        key={"subMenus" + i}
+                        button
+                        className={classes.nested}
+                      >
+                        <ListItemIcon>
+                          <Link to={subMenu.path} key={subMenu.title}>
+                            {subMenu.icon}
+                          </Link>
+                        </ListItemIcon>
+                        <Link to={subMenu.path} key={subMenu.title}>
+                          <ListItemText primary={subMenu.title} />
+                        </Link>
+                      </ListItem>
+                    );
+                  })}
+                </List>
+              </Collapse>
             )}
-          </ListItem>
+          </>
         ))}
       </List>
 

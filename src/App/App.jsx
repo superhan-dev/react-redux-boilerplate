@@ -8,6 +8,7 @@ import { alertActions, userActions } from "../_actions";
 
 import {
   CanvasPage,
+  D3PracticePage,
   DashboardPage,
   ImageUploadPage,
   LoginPage,
@@ -114,6 +115,17 @@ function App() {
               component={ImageUploadPage}
             />
             <PrivateRoute exact path="/canvas" component={CanvasPage} />
+
+            <PrivateRoute
+              exact
+              path="/d3_practice/:id"
+              component={D3PracticePage}
+            />
+            <PrivateRoute
+              exact
+              path="/d3_practice"
+              component={D3PracticePage}
+            />
 
             <Route path="/login" component={LoginPage} />
             <Redirect from="*" to="/" />

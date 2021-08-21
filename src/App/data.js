@@ -1,5 +1,7 @@
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import CropOriginalIcon from '@material-ui/icons/CropOriginal';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import ShowChartIcon from '@material-ui/icons/ShowChart';
 
 /**
  * data.js는 app전체에서 공통적으로 사용되는 static data를 정의한 공간이다.
@@ -16,13 +18,7 @@ export const menus = [
     imgUrl: "",
     icon: (<CloudUploadIcon/>),
     color: "#000",
-    subMenus: [
-      {
-        title: "",
-        path: "",
-        imgUrl: "",
-      },
-    ],
+    subMenus: [],
   },
   {
     title: "CanvasPage",
@@ -30,10 +26,25 @@ export const menus = [
     imgUrl: "",
     icon: (<CropOriginalIcon/>),
     color: "#000",
+    subMenus: [],
+  },
+  {
+    title: "D3PracticePage",
+    path: "/d3_practice",
+    imgUrl: "",
+    icon: (<CropOriginalIcon/>),
+    color: "#000",
     subMenus: [
       {
-        title: "",
-        path: "",
+        title: "Circle",
+        path: "/d3_practice/circle",
+        icon: (<RadioButtonUncheckedIcon/>),
+        imgUrl: "",
+      },
+      {
+        title: "Line Chart",
+        path: "/d3_practice/line_chart",
+        icon: (<ShowChartIcon/>),
         imgUrl: "",
       },
     ],

@@ -16,7 +16,7 @@ function PrivateRoute({ component: Component, roles, ...rest }) {
     //     )
     //   }
     // />
-    <Component {...rest} />
+    <Route {...rest} render={(props) => <Component {...props} />} />
   );
 }
 
