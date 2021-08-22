@@ -150,7 +150,6 @@ function AppDrawer({ open, handleDrawerClose, menus }) {
               <Collapse in={expend} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   {menu.subMenus.map((subMenu, i) => {
-                    console.log(subMenu);
                     return (
                       <ListItem
                         key={"subMenus" + i}

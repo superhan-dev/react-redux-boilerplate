@@ -8,9 +8,22 @@ const useStyles = makeStyles((theme) => ({
   },
   svg: {
     overflow: "visible",
+    position: "absolute",
+    zIndex: "1",
+  },
+
+  video: {
+    position: "absolute",
   },
 }));
 
+/**
+ * 구현 목적: video위에 svg를 올려 도형을 그리는 것을 목표한다.
+ * 시도 1. video를 svg안에 넣었으나,
+ *   svg 엘리먼트가 가장 아래 레이어에 생성되어 도형들을 가려버리는 현상이 발생.
+ * 시도 2. video와 svg를 각각 분리한 뒤 position을 absolute로 주어 z-index를 이용하여,
+ *   svg를 가장 앞 레이어로 보이도록 구현.
+ */
 function D3AnimatedBarPage() {
   const classes = useStyles();
 
@@ -55,15 +68,31 @@ function D3AnimatedBarPage() {
       .transition()
       .attr("fill", colorScale)
       .attr("height", (value) => 150 - yScale(value));
+
+    // video에 autoplay속성을 주었으나, 자동 재생되지 않아 quertSelector를 이용하여 play.
+    const video = document.querySelector("video");
+    video.play();
   }, [data]);
 
   return (
     <div className={classes.root}>
       <h1>The Animated Bar</h1>
+
       <svg ref={svgRef} className={classes.svg}>
         <g className="x-axis"></g>
         <g className="y-axis"></g>
+        {/* video를 안에 넣을 수 있지만 레이어가 가장 앞으로 나와버려 도형들을 덮어버린다. */}
+        {/* <foreignObject x="0" y="0" width="300" height="150">
+          <video width="300" height="150" controls>
+            <source src="/video/SampleVideo.mp4" type="video/mp4" />
+          </video>
+        </foreignObject> */}
       </svg>
+
+      <video width="300" height="150" autoplay muted>
+        <source src="/video/SampleVideo.mp4" type="video/mp4" />
+      </video>
+
       <br></br>
       <br></br>
 
