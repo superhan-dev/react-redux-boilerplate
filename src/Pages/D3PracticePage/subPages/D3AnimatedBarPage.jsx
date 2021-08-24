@@ -1,6 +1,7 @@
-import { Button, makeStyles } from "@material-ui/core";
+import { Button, Dialog, makeStyles } from "@material-ui/core";
 import { scaleLinear, select, axisBottom, axisLeft, scaleBand } from "d3";
 import React, { useRef, useState, useEffect } from "react";
+import { DrawPointDialog } from "./DrawPointDialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +31,7 @@ function D3AnimatedBarPage() {
   const svgRef = useRef(null);
 
   const [data, setData] = useState([25, 30, 45, 60, 20, 65, 75]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const svg = select(svgRef.current);
@@ -70,9 +72,17 @@ function D3AnimatedBarPage() {
       .attr("height", (value) => 150 - yScale(value));
 
     // video에 autoplay속성을 주었으나, 자동 재생되지 않아 quertSelector를 이용하여 play.
-    const video = document.querySelector("video");
-    video.play();
+    // const video = document.querySelector("video");
+    // video.play();
   }, [data]);
+
+  function handleClickOpen() {
+    setOpen(true);
+  }
+
+  function handleClose() {
+    setOpen(false);
+  }
 
   return (
     <div className={classes.root}>
@@ -89,7 +99,8 @@ function D3AnimatedBarPage() {
         </foreignObject> */}
       </svg>
 
-      <video width="300" height="150" autoplay muted>
+      {/* <video width="300" height="150" autoPlay muted> */}
+      <video width="300" height="150">
         <source src="/video/SampleVideo.mp4" type="video/mp4" />
       </video>
 
@@ -109,6 +120,11 @@ function D3AnimatedBarPage() {
       >
         Filter Data
       </Button>
+
+      <Button onClick={handleClickOpen} color="primary">
+        Add Point
+      </Button>
+      <DrawPointDialog open={open} onClose={handleClose} />
     </div>
   );
 }

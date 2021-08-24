@@ -2,7 +2,7 @@ import React from "react";
 
 import { AppLayout } from "../../_components";
 import { Route, useParams, Redirect } from "react-router-dom";
-import { D3AnimatedBarPage, D3CirclePage, D3LineChartPage } from "./subPages";
+import { D3CirclePage, D3LineChartPage, D3AnimatedBarPage } from "./subPages";
 
 function D3PracticePage() {
   const { id } = useParams();

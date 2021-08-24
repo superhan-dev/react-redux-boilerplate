@@ -1,8 +1,8 @@
 import React from "react";
-import { AppLayout, FileUploadInput } from "../../_components";
+import {AppLayout, FileUploadInput} from "../../_components";
 
 function DashboardPage() {
-  return <AppLayout>Dashboard</AppLayout>;
+    return <AppLayout>Dashboard</AppLayout>;
 }
 
-export { DashboardPage };
+export {DashboardPage};

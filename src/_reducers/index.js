@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 
 // import { registration } from './registration.reducer';
-import { user } from './user.reducer';
+import {user} from './user.reducer';
 // import { alert } from './alert.reducer';
 // import { dashboard } from './dashboard.reducer';
 

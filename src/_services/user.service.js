@@ -1,5 +1,5 @@
 // import config from 'config';
-import { UserApi, handleResponse} from '../_apis'
+import {UserApi, handleResponse} from '../_apis'
 
 export const userService = {
     login,
@@ -11,26 +11,26 @@ export const userService = {
 };
 
 
-function login(username, password){
+function login(username, password) {
     return UserApi
         .authenticate(username, password)
         .then(handleResponse)
-        .then( user => {
+        .then(user => {
             localStorage.setItem('user', JSON.stringify(user));
             return user;
         });
 }
 
-function logout(){
+function logout() {
     localStorage.removeItem('user');
 }
 
 
-function getMyProfile(){
+function getMyProfile() {
     return UserApi
         .getMyProfile()
         .then(handleResponse)
-        .then( profile => {
+        .then(profile => {
             let user = JSON.parse(localStorage.getItem('user'));
             user.userProfile = profile;
             localStorage.setItem('user', JSON.stringify(user));
@@ -39,11 +39,11 @@ function getMyProfile(){
 }
 
 
-function updateMyProfile(formData){
+function updateMyProfile(formData) {
     return UserApi
         .updateMyProfile(formData)
         .then(handleResponse)
-        .then( profile => {
+        .then(profile => {
             let user = JSON.parse(localStorage.getItem('user'));
             user.userProfile = profile;
             localStorage.setItem('user', JSON.stringify(user));
@@ -51,20 +51,20 @@ function updateMyProfile(formData){
         });
 }
 
-function getMyDashboard(){
+function getMyDashboard() {
     return UserApi
         .getMyDashboard()
         .then(handleResponse)
-        .then( dashboard => {   
+        .then(dashboard => {
             return dashboard;
         });
 }
 
-function updatePassword(currentPassword, updatedPassword){
+function updatePassword(currentPassword, updatedPassword) {
     return UserApi
         .updatePassword(currentPassword, updatedPassword)
         .then(handleResponse)
-        .then( content => {
+        .then(content => {
             // 암호 변경 결과가 성공이면 Empty Object가 반환되므로,
             // 다른 처리를 할 것은 없다.
             return content;
